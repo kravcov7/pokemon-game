@@ -1,17 +1,16 @@
-import React from "react";
 import "./styles.modules.css";
 
-function Layot() {
+function Layot({title, descr}) {
   return (
     <section className="root">
       <div className="wrapper">
         <article>
           <div className="title">
-            <h3></h3>
+            <h3>{ title }</h3>
             <span className="separator"></span>
           </div>
           <div className="desc full">
-            <p></p>
+            <p>{ descr }</p>
           </div>
         </article>
       </div>
