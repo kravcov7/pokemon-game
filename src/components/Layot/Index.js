@@ -1,15 +1,21 @@
-import "./styles.modules.css";
+import s from "./styles.module.css";
 
-function Layot({title, descr}) {
+
+function Layot({title, descr, urlBg, colorBg}) {
+  const layoutStyle = {
+    backgroundColor: colorBg,
+    backgroundImage: `url('${urlBg}')`,
+    color: 'white',
+};
   return (
-    <section className="root">
-      <div className="wrapper">
+    <section className={s.root} style={layoutStyle}>      
+      <div className={s.wrapper}>
         <article>
-          <div className="title">
+          <div className={s.title}>
             <h3>{ title }</h3>
-            <span className="separator"></span>
+            <span className={s.separator}></span>
           </div>
-          <div className="desc full">
+          <div className={`${s.desc} ${s.full}`}>
             <p>{ descr }</p>
           </div>
         </article>
