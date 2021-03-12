@@ -1,6 +1,6 @@
 import s from "./styles.module.css";
 
-function Layot({title, descr, urlBg, colorBg}) {
+function Layout({title, descr, urlBg, colorBg}) {
   const layoutStyle = {
     backgroundColor: colorBg,
     backgroundImage: urlBg ? `url('${urlBg}')` : '',    
@@ -22,4 +22,4 @@ function Layot({title, descr, urlBg, colorBg}) {
   );
 }
 
-export default Layot;
+export default Layout;
