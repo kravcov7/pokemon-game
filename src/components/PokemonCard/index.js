@@ -6,9 +6,9 @@ function PokemonCard({name, img, id, type, values}) {
   const [isActive, setIsActive] = useState(false);
 
   const handleClick = () => {
-    setIsActive(true);
+    isActive ? setIsActive(false) : setIsActive(true);
   }
-  
+
   return (
     <div className={f.root} onClick={handleClick}>
       <div className={`${f.pokemonCard} ${isActive ? f.active : ''}`}>
