@@ -1,11 +1,9 @@
 import s from "./styles.module.css";
 
-
 function Layot({title, descr, urlBg, colorBg}) {
   const layoutStyle = {
     backgroundColor: colorBg,
-    backgroundImage: `url('${urlBg}')`,
-    color: 'white',
+    backgroundImage: urlBg ? `url('${urlBg}')` : '',    
 };
   return (
     <section className={s.root} style={layoutStyle}>      
