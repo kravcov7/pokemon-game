@@ -1,28 +1,34 @@
-import React from "react";
+import { useState } from "react";
 import f from "./styles.module.css";
 import cardBackSide from './assets/card-back-side.jpg'
 
-function PokemonCard() {
+function PokemonCard({name, img, id, type, values}) {
+  const [isActive, setIsActive] = useState(false);
+
+  const handleClick = () => {
+    setIsActive(true);
+  }
+  
   return (
-    <div className={f.root}>
-      <div className={f.pokemonCard}>
+    <div className={f.root} onClick={handleClick}>
+      <div className={`${f.pokemonCard} ${isActive ? f.active : ''}`}>
         <div className={f.cardFront}>
           <div className={`${f.wrap} ${f.front}`}>
-            <div className={f.pokemon}>
+            <div className={`${f.pokemon} ${f[type]}`}>
               <div className={f.values}>
-                <div className={`${f.count} ${f.top}`}></div>
-                <div className={`${f.count} ${f.right}`}></div>
-                <div className={`${f.count} ${f.bottom}`}></div>
-                <div className={`${f.count} ${f.left}`}></div>
+                <div className={`${f.count} ${f.top}`}>{values.top}</div>
+                <div className={`${f.count} ${f.right}`}>{values.right}</div>
+                <div className={`${f.count} ${f.bottom}`}>{values.bottom}</div>
+                <div className={`${f.count} ${f.left}`}>{values.left}</div>
               </div>
               <div className={f.imgContainer}>
-                <img src="<-- Pokemon Picture -->" alt="<-- Name Pokemon -->" />
+                <img src={img} alt={name} />
               </div>
               <div className={f.info}>
-                <span className={f.number}>#{}</span>
-                <h3 className={f.name}></h3>
+                <span className={f.number}>#{id}</span>
+                <h3 className={f.name}>{name}</h3>
                 <small className={f.type}>
-                  Type: <span></span>
+                  Type: <span>{type}</span>
                 </small>
               </div>
             </div>
@@ -31,7 +37,7 @@ function PokemonCard() {
 
         <div className={f.cardBack}>
           <div className={`${f.wrap} ${f.back}`}>
-            <img src={f.cardBackSide} alt="Сard Backed" />
+            <img src={cardBackSide} alt={name} />
           </div>
         </div>
       </div>
