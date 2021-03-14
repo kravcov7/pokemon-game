@@ -14,7 +14,7 @@ function Layout({title, urlBg, colorBg, children}) {
             <span className={s.separator}></span>
           </div>
           <div className={`${s.desc} ${s.full}`}>
-            <p>{ children }</p>
+            <div>{ children }</div>
           </div>
         </article>
       </div>
