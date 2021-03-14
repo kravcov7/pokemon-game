@@ -1,7 +1,7 @@
 import "./App.css";
-import Header from "./Header";
-import Layout from "./Layout";
-import Footer from "./Footer";
+import Header from "./Header/index";
+import Layout from "./Layout/index";
+import Footer from "./Footer/index";
 import Logo from "./../assets/bg3.jpg";
 import PokemonCard from "./PokemonCard";
 
