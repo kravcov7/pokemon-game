@@ -1,6 +1,6 @@
 import s from "./styles.module.css";
 
-function Layot({title, descr, urlBg, colorBg}) {
+function Layout({title, urlBg, colorBg, children}) {
   const layoutStyle = {
     backgroundColor: colorBg,
     backgroundImage: urlBg ? `url('${urlBg}')` : '',    
@@ -14,7 +14,7 @@ function Layot({title, descr, urlBg, colorBg}) {
             <span className={s.separator}></span>
           </div>
           <div className={`${s.desc} ${s.full}`}>
-            <p>{ descr }</p>
+            <p>{ children }</p>
           </div>
         </article>
       </div>
@@ -22,4 +22,4 @@ function Layot({title, descr, urlBg, colorBg}) {
   );
 }
 
-export default Layot;
+export default Layout;
