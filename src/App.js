@@ -1,9 +1,9 @@
 import "./App.css";
-import Header from "../components/Header";
-import Layout from "../components/Layout";
-import Footer from "../components/Footer";
-import Logo from "./../assets/bg3.jpg";
-import PokemonCard from "./PokemonCard";
+import Header from "./components/Header";
+import Layout from "./components/Layout";
+import Footer from "./components/Footer";
+import Logo from "./assets/bg3.jpg";
+import PokemonCard from "./components/PokemonCard";
 
 const POKEMONS = [
   {
