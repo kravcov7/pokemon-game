@@ -1,5 +1,4 @@
 import d from "./style.module.css";
-import cn from 'classnames'
 
 function Menu({ state }) {
   return (
