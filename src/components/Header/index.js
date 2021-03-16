@@ -1,4 +1,4 @@
-import d from './styles.module.css';
+import d from './style.module.css';
 
 function Header({title, descr, onClickButton }) {
   const handleClick = () => {

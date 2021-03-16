@@ -1,15 +1,18 @@
-const GamePage = () => {
-  // const handleClick = () => {
-  //   console.log('###: <Header />');
-  //   onClickButton && onClickButton('game');
-  // }
+import d from "./style.module.css";
+
+const GamePage = ({ onChangePage }) => {
+  const handleClick = () => {    
+    onChangePage && onChangePage('app');
+  }
 
   return (
-    <>
-      <div>This Game Page!!!</div>
-      {/* <button onClick={handleClick}>Home Page </button> */}
-      <button >Home Page </button>
-    </>
+    <header className={d.root}>
+      <div className={d.forest}></div>
+      <div className={d.container}>
+        <h1>This Game Page!!!</h1>
+        <button onClick={handleClick}>Home Page</button>
+      </div>
+    </header>
   );
 };
 
