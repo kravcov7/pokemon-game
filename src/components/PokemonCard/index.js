@@ -1,4 +1,6 @@
 import { useState } from "react";
+import cn from 'classnames';
+
 import f from "./styles.module.css";
 import cardBackSide from './assets/card-back-side.jpg'
 
@@ -11,7 +13,7 @@ function PokemonCard({name, img, id, type, values}) {
 
   return (
     <div className={f.root} onClick={handleClick}>
-      <div className={`${f.pokemonCard} ${isActive ? f.active : ''}`}>
+      <div className={cn(f.pokemonCard, {[f.active]: isActive})}>
         <div className={f.cardFront}>
           <div className={`${f.wrap} ${f.front}`}>
             <div className={`${f.pokemon} ${f[type]}`}>
