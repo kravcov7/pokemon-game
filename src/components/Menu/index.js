@@ -7,16 +7,16 @@ function Menu({ state }) {
       <div className={d.menuItems}>
         <ul>
           <li>
-            <button>HOME</button>
+            <a href="/#">HOME</a>
           </li>
           <li>
-            <button>GAME</button>
+            <a href="/#">GAME</a>
           </li>
           <li>
-            <button>ABOUT</button>
+            <a href="/#">ABOUT</a>
           </li>
           <li>
-            <button>CONTACT</button>
+            <a href="/#">CONTACT</a>
           </li>
         </ul>
       </div>
