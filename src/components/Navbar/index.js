@@ -14,7 +14,7 @@ function NavBar({ onClickButton }) {
     <nav className={d.root}>
       <div className={d.navWrapper}>
         <p className={d.brand}>LOGO</p>
-        <a className={cn(d.menuButton, { [d.active]: isActive })} onClick={handleClick} >
+        <a href='#' className={cn(d.menuButton, { [d.active]: isActive })} onClick={handleClick} >
           <span />
         </a>
       </div>
