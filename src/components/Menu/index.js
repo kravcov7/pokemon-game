@@ -1,3 +1,6 @@
+import MenuItem from '../MenuItem';
+import ROUTES from '../../assets/menu.json'
+
 import cn from 'classnames';
 import d from "./style.module.css";
 
@@ -7,18 +10,9 @@ function Menu({ state }) {
     <div className={d.overlay} />
       <div className={d.menuItems}>
         <ul>
-          <li>
-            <a href="/#">HOME</a>
-          </li>
-          <li>
-            <a href="/#">GAME</a>
-          </li>
-          <li>
-            <a href="/#">ABOUT</a>
-          </li>
-          <li>
-            <a href="/#">CONTACT</a>
-          </li>
+          {
+            ROUTES.map(item=> <MenuItem key={item.id} link={item.link} name={item.name} />)
+          }
         </ul>
       </div>
     </div>
