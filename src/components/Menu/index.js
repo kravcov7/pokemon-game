@@ -1,9 +1,10 @@
+import cn from 'classnames';
 import d from "./style.module.css";
 
 function Menu({ state }) {
-  return (
-    <div className={`${d.menuContainer} ${state ? d.active : d.deactive}`}>
-      <div className={d.overlay} />
+  return ( 
+    <div className={cn(d.menuContainer, {[d.active]: state})}>
+    <div className={d.overlay} />
       <div className={d.menuItems}>
         <ul>
           <li>
