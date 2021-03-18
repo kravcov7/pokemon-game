@@ -1,6 +1,5 @@
 import Header from "../../components/Header";
 import Layout from "../../components/Layout";
-import Footer from "../../components/Footer";
 import MenuHeader from "../../components/MenuHeader";
 
 import Logo from "../../assets/bg3.jpg";
