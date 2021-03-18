@@ -1,8 +1,10 @@
+import { useHistory } from 'react-router-dom';
 import d from "./style.module.css";
 
-const GamePage = ({ onChangePage }) => {
+const GamePage = () => {
+  const history = useHistory();
   const handleClick = () => {    
-    onChangePage && onChangePage('app');
+    history.push('/');
   }
 
   return (
