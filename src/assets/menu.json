@@ -1,0 +1,18 @@
+[
+  {
+    "link" : "#welcome",
+    "name" : "HOME"
+  },
+  {
+    "link" : "#game",
+    "name" : "GAME"
+  },
+  {
+    "link" : "#about",
+    "name" : "ABOUT"
+  },
+  {
+    "link" : "#contact",
+    "name" : "CONTACT"
+  }
+]
