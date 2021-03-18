@@ -2,7 +2,7 @@ import d from "./style.module.css";
 import cn from "classnames";
 import { useState } from "react";
 
-function NavBar({ onClickButton }) {
+function NavBar({ onClickButton, state }) {
   const [isActive, setIsActive] = useState(false);
 
   const handleClick = () => {
