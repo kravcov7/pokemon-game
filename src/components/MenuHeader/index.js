@@ -10,7 +10,7 @@ function MenuHeader() {
 
   return (
     <>
-      <Menu state={ isActive } />
+      <Menu state={ isActive }  onClickButton={handleClickButton} />
       <NavBar onClickButton={handleClickButton} />
     </>
   );

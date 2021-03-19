@@ -1,5 +1,6 @@
-import MenuItem from '../MenuItem';
-import ROUTES from '../../assets/menu.json'
+import ROUTES from '../../assets/menu.json';
+
+import { Link } from 'react-router-dom';
 
 import cn from 'classnames';
 import d from "./style.module.css";
@@ -11,7 +12,11 @@ function Menu({ state }) {
       <div className={d.menuItems}>
         <ul>
           {
-            ROUTES.map(item=> <MenuItem key={item.id} link={item.link} name={item.name} />)
+            ROUTES.map(({ link, name }, index) => (
+              <li key={index} >
+                <Link to={link}>{ name }</Link>
+              </li>
+            ))
           }
         </ul>
       </div>

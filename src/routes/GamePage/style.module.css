@@ -20,6 +20,13 @@
   opacity: 0;
 }
 
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
 @keyframes stars-move-in {
   from {
       background-position-y: -100px;
