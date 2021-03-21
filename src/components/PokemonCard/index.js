@@ -3,17 +3,16 @@ import cn from "classnames";
 import f from "./styles.module.css";
 import cardBackSide from "./assets/card-back-side.jpg";
 
-const PokemonCard = ({ name, img, id, type, values, choice, active }) => {
+const PokemonCard = ({ name, img, id, type, values, onClickCardTurn, isActive }) => {
   
-  const handleClick = () => {
-    
+  const handleClick = () => {    
     console.log(id);
-    choice && choice(id);
+    onClickCardTurn && onClickCardTurn(id);
   };
 
   return (
     <div className={f.root} >
-      <div className={cn(f.pokemonCard, { [f.active]: active })} onClick={() => handleClick(id)} >
+      <div className={cn(f.pokemonCard, { [f.active]: isActive })} onClick={() => handleClick(id)} >
         <div className={f.cardFront}>
           <div className={`${f.wrap} ${f.front}`}>
             <div className={`${f.pokemon} ${f[type]}`}>

@@ -20,6 +20,11 @@
   opacity: 0;
 }
 
+.button { 
+  margin: 40px 0px;
+  text-align: center;
+}
+
 .flex {
   display: flex;
   justify-content: center;
