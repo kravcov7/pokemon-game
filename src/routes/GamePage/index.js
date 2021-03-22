@@ -11,42 +11,32 @@ import d from "./style.module.css";
 const GamePage = () => {
   const [pokemons, setPokemons] = useState({});
 
-  useEffect(() => {
+  const getPokemons = () => {
     database.ref("pokemons").once("value", (snapshot) => {
       setPokemons(snapshot.val());
     });
+  };
+
+  useEffect(() => {
+    getPokemons();
   }, []);
 
-  const onClickPokemonAdd = () => {
+  const onAddPokemon = () => {
     const newPokemon = Object.entries(pokemons)[Math.floor(Math.random() * 5)][1];
-    const newKey = database.ref().child("pokemons").push().key;
-    database.ref("pokemons/" + newKey).set(newPokemon, (error) => {
-      if (error) {
-        console.log("# App error", error);
-      } else {
-        console.log("# App handleAddNewPokemon Data saved successfully!");
-        setPokemons((prevState) => {
-          const result = { ...prevState, [newKey]: newPokemon };
-          console.log("### App handleAddNewPokemon new pokemons", result);
-          return result;
-        });
-      }
-    });
+    const newKey = database.ref().child('pokemons').push().key;
+    database.ref('pokemons/' + newKey).set(newPokemon).then(() => getPokemons());
   };
 
   const onClickCardTurn = (id) => {
     setPokemons((prevState) => {
       return Object.entries(prevState).reduce((acc, item) => {
         const pokemon = { ...item[1] };
-        const prevCardState = pokemon.active;
-
         if (pokemon.id === id) {
           pokemon.active = !pokemon.active;
         }
-        if (pokemon.active !== prevCardState) {
-          database.ref("pokemons/" + item[0]).set(pokemon);
-        }
+        database.ref("pokemons/" + item[0]).set(pokemon);
         acc[item[0]] = pokemon;
+
         return acc;
       }, {});
     });
@@ -74,7 +64,7 @@ const GamePage = () => {
           ))}
         </div>
         <div className={d.button}>
-          <button onClick={onClickPokemonAdd}> Add new pokemon</button>
+          <button onClick={onAddPokemon}> Add new pokemon</button>
         </div>
       </Layout>
     </>
