@@ -1,4 +1,4 @@
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 import database from "../../service/firebase";
@@ -10,21 +10,27 @@ import d from "./style.module.css";
 
 const GamePage = () => {
   const [pokemons, setPokemons] = useState({});
-  const [cardsUpdated, setCardsUpdate] = useState(false);
 
   useEffect(() => {
     database.ref("pokemons").once("value", (snapshot) => {
       setPokemons(snapshot.val());
     });
-  }, [cardsUpdated]);
+  }, []);
 
   const onClickPokemonAdd = () => {
-    setCardsUpdate((prevState) => {
-      let keys = Object.keys(pokemons);
-      const newKey = database.ref().child("pokemons").push().key;
-      database.ref("pokemons/" + newKey).set(pokemons[keys[keys.length-(Math.floor(Math.random()*(keys.length-1)) + 1)]]);
-
-      return !prevState;
+    const newPokemon = Object.entries(pokemons)[Math.floor(Math.random() * 5)][1];
+    const newKey = database.ref().child("pokemons").push().key;
+    database.ref("pokemons/" + newKey).set(newPokemon, (error) => {
+      if (error) {
+        console.log("# App error", error);
+      } else {
+        console.log("# App handleAddNewPokemon Data saved successfully!");
+        setPokemons((prevState) => {
+          const result = { ...prevState, [newKey]: newPokemon };
+          console.log("### App handleAddNewPokemon new pokemons", result);
+          return result;
+        });
+      }
     });
   };
 
@@ -57,6 +63,7 @@ const GamePage = () => {
         <div className={d.forest}></div>
         <div className={d.container}>
           <h1>This Game Page!!!</h1>
+          {/* <Link to='/'>Home pagee</Link> */}
           <button onClick={handleClick}>Home Page</button>
         </div>
       </header>
