@@ -1,81 +1,42 @@
-import { useHistory } from "react-router-dom";
-import { useState, useEffect, useContext } from "react";
+import { Switch, Route, useRouteMatch } from "react-router-dom";
+import { useState } from "react";
 
-import database from "../../service/firebase";
-
-import PokemonCard from "../../components/PokemonCard";
-import Layout from "../../components/Layout";
-
-import d from "./style.module.css";
-import { FireBaseContext } from "../../context/firebaseContext";
+import Start from "./routes/Start";
+import Board from "./routes/Board";
+import Finish from "./routes/Finish";
+import { PokemonContext } from "../../context/pokemonContext";
 
 const GamePage = () => {
-  const firebase = useContext(FireBaseContext);
-  const [pokemons, setPokemons] = useState({});
-  console.log('### firebase', firebase);
+  const [selectedPokemons, setSelectedPokemons] = useState({});
+  const match = useRouteMatch();
 
-  const getPokemons = async () => {
-    const responce = await firebase.getPokemonsOnce();
-    console.log('### responce', responce);
-    setPokemons(responce);
-    // database.ref("pokemons").once("value", (snapshot) => {
-    //   setPokemons(snapshot.val());
-    // });
-  };
+  const handleSelectedPokemons = (key, pokemon) => {
+    setSelectedPokemons((prevState) => {
+      if (prevState[key]) {
+        const copyState = { ...prevState };
+        delete copyState[key];
 
-  useEffect(() => {
-    getPokemons();
-  }, []);
-
-  const onAddPokemon = () => {
-    const newPokemon = Object.entries(pokemons)[Math.floor(Math.random() * 5)][1];
-    firebase.addPokemon(newPokemon, () => {
-      getPokemons();
-    })
-  };
-
-  const onClickCardTurn = (id) => {
-    setPokemons((prevState) => {
-      return Object.entries(prevState).reduce((acc, item) => {
-        const pokemon = { ...item[1] };
-        if (pokemon.id === id) {
-          pokemon.active = !pokemon.active;
-        }
-        // database.ref("pokemons/" + item[0]).set(pokemon);
-        acc[item[0]] = pokemon;
-        firebase.postPokemon(item[0], pokemon);
-
-        return acc;
-      }, {});
+        return copyState;
+      }
+      return {
+        ...prevState,
+        [key]: pokemon,
+      };
     });
   };
-
-  const history = useHistory();
-  const handleClick = () => {
-    history.push("/");
-  };
-
   return (
-    <>
-      <header className={d.root}>
-        <div className={d.forest}></div>
-        <div className={d.container}>
-          <h1>This Game Page!!!</h1>
-          {/* <Link to='/'>Home pagee</Link> */}
-          <button onClick={handleClick}>Home Page</button>
-        </div>
-      </header>
-      <Layout colorBg="#181d23">
-        <div className={d.flex}>
-          {Object.entries(pokemons).map(([key, { name, img, id, type, values, active }]) => (
-            <PokemonCard key={key} name={name} type={type} values={values} img={img} id={id} onClickCardTurn={onClickCardTurn} isActive={active} />
-          ))}
-        </div>
-        <div className={d.button}>
-          <button onClick={onAddPokemon}> Add new pokemon</button>
-        </div>
-      </Layout>
-    </>
+    <PokemonContext.Provider
+      value={{
+        pokemons: selectedPokemons,
+        onSelectedPokemons: handleSelectedPokemons,
+      }}
+    >
+      <Switch>
+        <Route path={`${match.path}/`} exact component={Start} />
+        <Route path={`${match.path}/board`} component={Board} />
+        <Route path={`${match.path}/finish`} component={Finish} />
+      </Switch>
+    </PokemonContext.Provider>
   );
 };
 
