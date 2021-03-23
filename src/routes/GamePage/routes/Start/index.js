@@ -69,6 +69,11 @@ const StartPage = () => {
     // });
   };
 
+  const handlerStartGameClick = () => {
+    history.push('/game/board');
+    
+}
+
   const history = useHistory();
   const handleClick = () => {
     history.push("/");
@@ -86,7 +91,7 @@ const StartPage = () => {
       </header> */}
       <Layout colorBg="#181d23">
         <div className={d.button}>
-          <button> Start Game</button>
+          <button onClick={handlerStartGameClick} disabled={Object.keys(pokemonsContext.pokemons).length < 5} > Start Game</button>
         </div>
         <div className={d.flex}>
           {Object.entries(pokemons).map(([key, { name, img, id, type, values, selected }]) => (
