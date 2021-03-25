@@ -2,6 +2,7 @@ import s from "./style.module.css";
 import { useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { PokemonContext } from "../../../../context/pokemonContext";
+import { BoardContext } from "../../../../context/boardContext";
 import PokemonCard from "../../../../components/PokemonCard";
 import PlayerBoard from "./component/PlayerBoard";
 
@@ -113,21 +114,23 @@ const BoardPage = () => {
   }, [steps]);
 
   return (
-    <div className={s.root}>
-      <div className={s.playerOne}>
-        <PlayerBoard player={1} cards={player1} onClickCard={(card) => setChoiceCard(card)} />
+    <BoardContext.Provider value={[player1, player2]}>
+      <div className={s.root}>
+        <div className={s.playerOne}>
+          <PlayerBoard player={1} cards={player1} onClickCard={(card) => setChoiceCard(card)} />
+        </div>
+        <div className={s.board}>
+          {board.map((item) => (
+            <div key={item.position} className={s.boardPlate} onClick={() => !item.card && handleClickBoardPlate(item.position)}>
+              {item.card && <PokemonCard {...item.card} isActive minimaze />}
+            </div>
+          ))}
+        </div>
+        <div className={s.playerTwo}>
+          <PlayerBoard player={2} cards={player2} onClickCard={(card) => setChoiceCard(card)} />
+        </div>
       </div>
-      <div className={s.board}>
-        {board.map((item) => (
-          <div key={item.position} className={s.boardPlate} onClick={() => !item.card && handleClickBoardPlate(item.position)}>
-            {item.card && <PokemonCard {...item.card} isActive minimaze />}
-          </div>
-        ))}
-      </div>
-      <div className={s.playerTwo}>
-        <PlayerBoard player={2} cards={player2} onClickCard={(card) => setChoiceCard(card)} />
-      </div>
-    </div>
+    </BoardContext.Provider>
   );
 };
 
