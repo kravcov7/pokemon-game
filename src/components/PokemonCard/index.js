@@ -1,12 +1,11 @@
 import cn from "classnames";
 
 import s from "./styles.module.css";
-import cardBackSide from "./assets/card-back-side.jpg";
+// import cardBackSide from "./assets/card-back-side.jpg";
 
-const PokemonCard = ({ className, name, img, id, type, values, onClickCardTurn, minimize, isSelected, isActive }) => {
+const PokemonCard = ({ className, name, img, id, type, values, posession, onClickCardTurn, minimize, isSelected, isActive }) => {
   
-  const handleClick = () => {    
-    console.log(id);
+  const handleClick = () => {        
     onClickCardTurn && onClickCardTurn(id);
   };
 
@@ -17,7 +16,8 @@ const PokemonCard = ({ className, name, img, id, type, values, onClickCardTurn, 
       })} onClick={ handleClick} >
     <div className={s.cardFront}>
         <div className={cn(s.wrap, s.front)}>
-            <div className={cn(s.pokemon, s[type])}>
+            <div className={cn(s.pokemon, s[type], s[posession])} >
+            {/* <div className={cn(s.pokemon, s[type])} style={{backgroundColor: posession}} > */}
                 <div className={s.values}>
                     <div className={cn(s.count, s.top)}>{values.top}</div>
                     <div className={cn(s.count, s.right)}>{values.right}</div>

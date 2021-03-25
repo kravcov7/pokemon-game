@@ -11,15 +11,13 @@ import { PokemonContext } from "../../../../context/pokemonContext";
 const StartPage = () => {
   const firebase = useContext(FireBaseContext);
   const pokemonsContext = useContext(PokemonContext);
-  console.log("sss pokemonsContext", pokemonsContext);
+  
   const [pokemons, setPokemons] = useState({});
-  console.log("### firebase", firebase);
-
-  const getPokemons = async () => {
-    const responce = await firebase.getPokemonsOnce();
-    console.log("### responce", responce);
-    setPokemons(responce);    
-  };
+  
+  // const getPokemons = async () => {
+  //   const responce = await firebase.getPokemonsOnce();    
+  //   setPokemons(responce);    
+  // };
 
   useEffect(() => {
     firebase.getPokemonSoket((pokemons) => {
@@ -52,9 +50,9 @@ const StartPage = () => {
   };
 
   const history = useHistory();
-  const handleClick = () => {
-    history.push("/");
-  };
+  // const handleClick = () => {
+  //   history.push("/");
+  // };
 
   return (
     <>

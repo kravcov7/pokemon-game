@@ -4,7 +4,7 @@ import cn from "classnames";
 
 import s from "./style.module.css";
 
-const PlayerBoard = ({ onClickCard, cards }) => {
+const PlayerBoard = ({ onClickCard, cards, player }) => {
   const [isSelected, setSelected] = useState(null);
   return (
     <>
@@ -15,7 +15,10 @@ const PlayerBoard = ({ onClickCard, cards }) => {
           })}
           onClick={() => {
             setSelected(item.id);
-            onClickCard && onClickCard(item);
+            onClickCard && onClickCard({
+              player,
+              ...item,
+            });
           }}
         >
           <PokemonCard key={item.id} name={item.name} type={item.type} values={item.values} img={item.img} id={item.id} minimize isActive />
