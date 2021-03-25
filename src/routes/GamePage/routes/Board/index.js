@@ -110,6 +110,7 @@ const BoardPage = () => {
       } else {
         alert("DRAW");
       }
+      history.replace('/game/finish')
     }
   }, [steps]);
 
